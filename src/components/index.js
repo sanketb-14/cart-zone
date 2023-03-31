@@ -1,4 +1,6 @@
 import Navbar from './Navbar'
-import Product from './Product'
+import ProductList from './ProductList'
 import Menu from './Menu'
-export  {Navbar,Product,Menu}
+import ProductDetail from './ProductDetail'
+import Cart from './Cart'
+export  {Navbar,ProductList,Menu,ProductDetail,Cart}

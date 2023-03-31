@@ -1,18 +1,32 @@
-import React from 'react'
+import React from "react";
 
-import {Navbar,Product,Menu} from './components'
+import { Navbar, ProductList,ProductDetail,Cart } from "./components";
+import {  useSelector } from "react-redux";
 
+import {Routes,Route} from 'react-router-dom'
 
 const App = () => {
-  const menu = ["All" ,"Men", "Women" , "Children" , "Other" ]
+ 
+  const products = useSelector((state) =>
+    state.products.items.filter(
+      (product) =>
+        state.products.selectedCategory === "All" ||
+        product.category === state.products.selectedCategory
+    )
+  );
+  
+
   return (
-    <div className='w-full'>
-      <Navbar menu={menu}/>
-      <Menu menu={menu}/>
-      <Product/>
-     
+    <div className="w-full h-screen">
+      <Navbar />
+      
+      <Routes>
+        <Route exact path='/' element={<ProductList products={products} />}/>
+        <Route path='/product/:id' element={<ProductDetail/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+      </Routes>
     </div>
   );
-}
+};
 
-export default App
+export default App;
